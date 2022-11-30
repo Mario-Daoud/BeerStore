@@ -5,6 +5,12 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerStore", "BeerStore\BeerStore.csproj", "{8344ACC9-B4A3-4DC6-B2AF-4484D9094FC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerStore.Services", "BeerStore.Service\BeerStore.Services.csproj", "{121484D1-D7CB-454A-B0EA-4C61F23B500C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerStore.Repositories", "BeerStore.Repositories\BeerStore.Repositories.csproj", "{823B67B0-CC2C-4F2F-BE16-6769C9351860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerStore.Models", "BeerStore.Models\BeerStore.Models.csproj", "{10D3FC50-7F8B-43AD-AE70-3D2B365B7B7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{8344ACC9-B4A3-4DC6-B2AF-4484D9094FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8344ACC9-B4A3-4DC6-B2AF-4484D9094FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8344ACC9-B4A3-4DC6-B2AF-4484D9094FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{121484D1-D7CB-454A-B0EA-4C61F23B500C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121484D1-D7CB-454A-B0EA-4C61F23B500C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121484D1-D7CB-454A-B0EA-4C61F23B500C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121484D1-D7CB-454A-B0EA-4C61F23B500C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823B67B0-CC2C-4F2F-BE16-6769C9351860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823B67B0-CC2C-4F2F-BE16-6769C9351860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823B67B0-CC2C-4F2F-BE16-6769C9351860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823B67B0-CC2C-4F2F-BE16-6769C9351860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D3FC50-7F8B-43AD-AE70-3D2B365B7B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D3FC50-7F8B-43AD-AE70-3D2B365B7B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D3FC50-7F8B-43AD-AE70-3D2B365B7B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D3FC50-7F8B-43AD-AE70-3D2B365B7B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
