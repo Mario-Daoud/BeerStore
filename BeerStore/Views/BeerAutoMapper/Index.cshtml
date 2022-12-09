@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Bierbrouwers (w automapper)</h1>
+<h1>Index</h1>
 
-<table class="table">
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
@@ -54,3 +54,12 @@
 }
     </tbody>
 </table>
+
+@section scripts {
+    <script src="~/lib/datatables/js/datatables.jqueryui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        })
+    </script>
+}

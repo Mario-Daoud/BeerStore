@@ -15,14 +15,14 @@ namespace BeerStore.Controllers
 
 
         //zonder automapper
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var lstBeers = _beerService.GetAll();
             List<BeerVM> beerVMs = new List<BeerVM>();
 
             if (lstBeers != null)
             {
-                foreach (var beer in lstBeers)
+                foreach (var beer in await lstBeers)
                 {
                     var beerVM = new BeerVM();
                     beerVM.Naam = beer.Naam;
@@ -36,5 +36,7 @@ namespace BeerStore.Controllers
 
             return View(beerVMs); //always vm
         }
+
+        
     }
 }

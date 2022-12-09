@@ -1,16 +1,30 @@
 ﻿@model IEnumerable<BeerStore.ViewModels.BeerVM>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "IndexByAlcohol";
 }
 
-@section styles {
-    <link href="~/lib/datatables/css/datatables.jqueryui.min.css" rel="stylesheet" />
-}
+<h1>IndexByAlcohol</h1>
 
-<h1>Bierbrouwers (w.o. automapper)</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="IndexByAlcohol">
 
-<table class="table">
+            <div class="form-group">
+                <label for="txtAlcohol" class="control-label">Alcoholpercentage</label>
+                <input id="txtAlcohol" name="txtAlcohol" class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model != null) {
+    <table class="table">
     <thead>
         <tr>
             <th>
@@ -58,3 +72,6 @@
 }
     </tbody>
 </table>
+}
+
+

@@ -1,19 +1,29 @@
-﻿using BeerStore.Repositories;
+﻿using BeerStore.Models.Entities;
+using BeerStore.Repositories;
 
 namespace BeerStore.Service
 {
     public class BeerService
     {
-        private BeerDAO BeerDAO { get; set; }
-
+        private BeerDAO beerDAO; 
         public BeerService()
         {
-            BeerDAO = new BeerDAO();
+            beerDAO = new BeerDAO();
         }
 
-        public IEnumerable<Models.Entities.Beer>? GetAll()
+        public async Task<IEnumerable<Beer>?> GetAll()
         {
-            return BeerDAO.GetAll();
+            return await beerDAO.GetAll();
+        }
+
+        public async Task<IEnumerable<Beer>?> GetBeersByAlcohol(decimal? percentage)
+        {
+            return await beerDAO.GetBeersByAlcohol(percentage);
+        }
+
+        public async Task<IEnumerable<Beer>?> GetBeerWithBrewer(string? brewer)
+        {
+            return await beerDAO.GetBeersWithBrewer(brewer);
         }
     }
 }

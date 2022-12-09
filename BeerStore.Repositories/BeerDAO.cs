@@ -14,11 +14,11 @@ namespace BeerStore.Repositories
             _dbContext = new BeerDbContext();
         }
 
-        public IEnumerable<Models.Entities.Beer> GetAll()
+        public async Task<IEnumerable<Models.Entities.Beer>?> GetAll()
         {
             try
             {
-                return _dbContext.Beers.Include(a => a.BrouwernrNavigation).Include(a => a.SoortnrNavigation).ToList();
+                return await _dbContext.Beers.Include(a => a.BrouwernrNavigation).Include(a => a.SoortnrNavigation).ToListAsync();
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
@@ -28,6 +28,45 @@ namespace BeerStore.Repositories
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public async Task<IEnumerable<Models.Entities.Beer>?> GetBeersByAlcohol(decimal? percentage)
+        {
+            try
+            {
+                return _dbContext.Beers.Where(a => a.Alcohol >= percentage).Include(a => a.BrouwernrNavigation).Include(a => a.SoortnrNavigation).ToList();
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                Debug.WriteLine("db not found", ex.ToString());
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<Models.Entities.Beer>?> GetBeersWithBrewer(string? brewer)
+        {
+            //SQL "select * from Adult"
+
+            try
+            {
+                return await _dbContext.Beers.Where(a => a.BrouwernrNavigation.Naam == brewer).Include(b => b.BrouwernrNavigation).Include(b => b.SoortnrNavigation).ToListAsync(); ;
+            }
+            catch (Microsoft.Data.SqlClient.SqlException ex)
+            {
+                Debug.WriteLine("Didn't found db", ex.ToString());
+                return null;
+            }
+
+            catch (Exception ex)
+            {
+                return null;
+
+
             }
         }
     }
