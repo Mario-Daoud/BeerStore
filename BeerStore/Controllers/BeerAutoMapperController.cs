@@ -46,7 +46,7 @@ namespace BeerStore.Controllers
                 return IndexByAlcohol();
             }
 
-            var lstBeers =  _beerService.GetBeersByAlcohol((decimal)txtAlcohol);
+            var lstBeers = await _beerService.GetBeersByAlcohol((decimal)txtAlcohol);
 
             List<BeerVM> beerVMs = null;
 
@@ -72,7 +72,7 @@ namespace BeerStore.Controllers
 
             ViewBag.lstBrouwer = new SelectList(await _breweryService.GetAll(), "Naam", "Naam");
 
-            ViewBag.Naam = brouwerId;
+            
 
             List<BeerVM> beerVMs = null;
 
