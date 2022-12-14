@@ -65,8 +65,6 @@ namespace BeerStore.Repositories
             catch (Exception ex)
             {
                 return null;
-
-
             }
         }
     }
