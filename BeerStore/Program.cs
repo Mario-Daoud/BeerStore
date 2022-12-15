@@ -31,7 +31,6 @@ app.UseEndpoints(endpoints =>
             areaName: "Admin",
             pattern: "Admin/{controller=Beer}/{action=Index}/{id?}");
 
-
     endpoints.MapAreaControllerRoute(
           name: "MyAreaProducts",
           areaName: "Europe",

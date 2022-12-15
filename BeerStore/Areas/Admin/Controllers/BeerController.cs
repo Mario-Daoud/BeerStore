@@ -5,17 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeerStore.Areas.Admin.Controllers
 {
-    // specify area
     [Area("Admin")]
-
-    public class BeerContoller : Controller
+    public class BeerController : Controller
     {
-
         private readonly BeerService _beerService;
         private readonly BreweryService _breweryService;
         private readonly IMapper _mapper;
 
-        public BeerContoller(IMapper mapper)
+        public BeerController(IMapper mapper)
         {
             _beerService = new BeerService();
             _breweryService = new BreweryService();
@@ -36,3 +33,6 @@ namespace BeerStore.Areas.Admin.Controllers
         }
     }
 }
+
+
+
