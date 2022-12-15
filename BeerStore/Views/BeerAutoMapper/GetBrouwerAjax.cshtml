@@ -1,0 +1,56 @@
+﻿@model BeerStore.ViewModels.BreweryBeersVM
+
+@{
+    ViewData["Title"] = "GetBrouwerAjax";
+}
+
+<h1>GetBrouwerAjax</h1>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="GetBrouwerAjax"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#content"
+              data-ajax-loading="#divloading"
+              data-ajax-success="Success"
+              data-ajax-failure="Failure" >
+
+            <div class="form-group">
+                <label for="brouwerId" class="control-label"></label>
+                <select asp-for="BreweryNumber" asp-items="@Model.Breweries">
+                    asp-items="@Model.Breweries">
+                    <option>Please select</option>
+                </select>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<img id="divloading"
+     src="~/Images/ZZ5H.gif"
+     style="display: none" />
+
+<div id="content">
+    <p>No brewer has been selected yet</p>
+</div>
+
+
+@section scripts {
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        //document.getElementById("BreweryNumber") -> $
+        $("#BreweryNumber").on("change", () => {
+
+            $("form").trigger("submit");
+        });
+
+        let Success = () => {
+            $("#divloading").hide();
+
+        }
+    </script>
+}

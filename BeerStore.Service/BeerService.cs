@@ -21,7 +21,7 @@ namespace BeerStore.Service
             return await beerDAO.GetBeersByAlcohol(percentage);
         }
 
-        public async Task<IEnumerable<Beer>?> GetBeerWithBrewer(string? brewer)
+        public async Task<IEnumerable<Beer>?> GetBeerWithBrewer(int? brewer)
         {
             return await beerDAO.GetBeersWithBrewer(brewer);
         }

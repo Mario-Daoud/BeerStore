@@ -22,8 +22,26 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// structuur opgeven -> er zijn verschillende routes mogelijk
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+            name: "MyAreaProducts",
+            areaName: "Admin",
+            pattern: "Admin/{controller=Beer}/{action=Index}/{id?}");
+
+
+    endpoints.MapAreaControllerRoute(
+          name: "MyAreaProducts",
+          areaName: "Europe",
+          pattern: "Europe/{controller=Europe}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+});
+
 
 app.Run();

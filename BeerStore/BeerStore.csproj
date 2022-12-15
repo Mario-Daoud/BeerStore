@@ -12,12 +12,26 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BeerStore.Models\BeerStore.Models.csproj" />
     <ProjectReference Include="..\BeerStore.Service\BeerStore.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Europe\Controllers\" />
+    <Folder Include="Areas\Europe\Data\" />
+    <Folder Include="Areas\Europe\Models\" />
+    <Folder Include="Areas\Europe\Views\" />
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\ZZ5H.gif" />
   </ItemGroup>
 
 </Project>

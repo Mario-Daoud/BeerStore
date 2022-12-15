@@ -60,19 +60,25 @@ namespace BeerStore.Controllers
 
         public async Task<IActionResult> GetBrouwer()
         {
-            ViewBag.lstBrouwer = new SelectList(await _breweryService.GetAll(), "Naam", "Naam");
+            ViewBag.lstBrouwer = new SelectList(await _breweryService.GetAll(), "Brouwernr", "Naam");
 
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetBrouwer(String brouwerId)
+        public async Task<IActionResult> GetBrouwer(int? brouwerId)
         {
-            var lstBeer = await _beerService.GetBeerWithBrewer(brouwerId);
 
-            ViewBag.lstBrouwer = new SelectList(await _breweryService.GetAll(), "Naam", "Naam");
+            if (brouwerId == null)
+            {
+                return NotFound();
+            }
 
-            
+            var lstBeer = await _beerService.GetBeerWithBrewer(Convert.ToInt16(brouwerId));
+
+            ViewBag.lstBrouwer = new SelectList(await _breweryService.GetAll(), "Brouwernr", "Naam");
+
+
 
             List<BeerVM> beerVMs = null;
 
@@ -85,6 +91,62 @@ namespace BeerStore.Controllers
             return View(beerVMs);
         }
 
+        public async Task<IActionResult> GetBrouwerVM()
+        {
+            BreweryBeersVM breweryBeersVM = new BreweryBeersVM();
+
+            breweryBeersVM.Breweries = new SelectList(await _breweryService.GetAll(), "Brouwernr", "Naam");
+
+            return View(breweryBeersVM);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetBrouwerVM(BreweryBeersVM entity)
+        {
+
+            if (entity.BreweryNumber == null)
+            {
+                return NotFound();
+            }
+
+            var bierList = await _beerService.GetBeerWithBrewer(Convert.ToInt16(entity.BreweryNumber));
+
+            BreweryBeersVM brouwersBierenVM = new BreweryBeersVM();
+            brouwersBierenVM.Beers = _mapper.Map<List<BeerVM>>(bierList);
+
+            brouwersBierenVM.Breweries = new SelectList(await _breweryService.GetAll(),
+                 "Brouwernr", "Naam", entity.BreweryNumber);
+
+
+            return View(brouwersBierenVM);
+
+        }
+
+        public async Task<IActionResult> GetBrouwerAjax()
+        {
+            BreweryBeersVM breweryBeersVM = new BreweryBeersVM();
+
+            breweryBeersVM.Breweries = new SelectList(await _breweryService.GetAll(), "Brouwernr", "Naam");
+
+            return View(breweryBeersVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetBrouwerAjax(BreweryBeersVM entity)
+        {
+            if (entity.BreweryNumber == null)
+            {
+                return NotFound();
+            }
+
+            var bierList = await _beerService.GetBeerWithBrewer(Convert.ToInt16(entity.BreweryNumber));
+            List<BeerVM> listVM = _mapper.Map<List<BeerVM>>(bierList);
+
+            // manual wachttijd zodat je spinner ziet
+            Thread.Sleep(1000); // ------ mag je natuurlijk weglaten, hier wordt 2 sec. gewacht
+            return PartialView("_SearchBierenPartial", listVM);
+
+        }
 
     }
 }

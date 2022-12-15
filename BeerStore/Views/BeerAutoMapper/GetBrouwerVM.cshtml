@@ -1,56 +1,58 @@
-﻿@model IEnumerable<BeerStore.ViewModels.BeerVM>
+﻿@model BeerStore.ViewModels.BreweryBeersVM
 
 @{
-    ViewData["Title"] = "GetBrouwer";
+    ViewData["Title"] = "GetBrouwerVM";
 }
 
-<h1>GetBrouwer</h1>
+<h1>GetBrouwerVM</h1>
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="GetBrouwer">
+        <form asp-action="GetBrouwerVM">
 
             <div class="form-group">
-                <label for="brouwerId" class="control-label"></label>
-                <select name="brouwerId" id="brouwerId"
-                        asp-items="@ViewBag.lstBrouwer">
+                <label for="brouwerNumber"></label>
+                <select asp-for="BreweryNumber" asp-items="@Model.Breweries">
                     <option>Please select</option>
                 </select>
             </div>
 
+            @*
             <div class="form-group">
                 <input type="submit" value="Search" class="btn btn-default" />
             </div>
+            *@
+
         </form>
     </div>
 </div>
 
 
-@if (Model != null)
+@if (Model.Beers != null)
 {
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Naam)
+                    @Html.DisplayNameFor(model => model.Beers.First().Naam)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.BrouwerNaam)
+                    @Html.DisplayNameFor(model => model.Beers.First().BrouwerNaam)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SoortNaam)
+                    @Html.DisplayNameFor(model => model.Beers.First().SoortNaam)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Alcohol)
+                    @Html.DisplayNameFor(model => model.Beers.First().Alcohol)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Image)
+                    @Html.DisplayNameFor(model => model.Beers.First().Image)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Beers)
             {
                 <tr>
                     <td>
@@ -77,4 +79,22 @@
             }
         </tbody>
     </table>
+}
+
+
+@section scripts
+    {
+    <script>
+        //document.getElementById("BreweryNumber") -> $
+        //document.getElementById("BreweryNumber").addEventListener("change", () => {
+        //    alert("ok");
+        //    document.getElementsByTagName("Form")[0].submit();
+        //});
+
+        // oplossen via jQuery
+        $("#BreweryNumber").on("change", () => {
+
+            $("form").trigger("submit");
+        });
+    </script>
 }

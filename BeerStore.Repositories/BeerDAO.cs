@@ -48,13 +48,13 @@ namespace BeerStore.Repositories
             }
         }
 
-        public async Task<IEnumerable<Models.Entities.Beer>?> GetBeersWithBrewer(string? brewer)
+        public async Task<IEnumerable<Models.Entities.Beer>?> GetBeersWithBrewer(int? brewer)
         {
             //SQL "select * from Adult"
 
             try
             {
-                return await _dbContext.Beers.Where(a => a.BrouwernrNavigation.Naam == brewer).Include(b => b.BrouwernrNavigation).Include(b => b.SoortnrNavigation).ToListAsync(); ;
+                return await _dbContext.Beers.Where(a => a.Brouwernr == brewer).Include(b => b.BrouwernrNavigation).Include(b => b.SoortnrNavigation).ToListAsync(); ;
             }
             catch (Microsoft.Data.SqlClient.SqlException ex)
             {
