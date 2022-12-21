@@ -8,6 +8,7 @@
 <h1>Admin Index</h1>
 
 
+@if (Model != null) {
 <table class="table">
     <thead>
         <tr>
@@ -62,3 +63,6 @@
 }
     </tbody>
 </table>
+} else {
+    <p>geen dataset beschikbaar</p>
+}

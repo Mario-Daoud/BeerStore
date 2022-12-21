@@ -25,5 +25,11 @@ namespace BeerStore.Service
         {
             return await beerDAO.GetBeersWithBrewer(brewer);
         }
+
+        public async Task Insert(Beer entity)
+        {
+            await beerDAO.Insert(entity);
+        }
+
     }
 }

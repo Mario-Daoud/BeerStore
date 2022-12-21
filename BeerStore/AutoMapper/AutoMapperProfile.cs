@@ -17,10 +17,16 @@ namespace BeerStore.AutoMapper
             // brewery
             CreateMap<Brewery, BreweryVM>();
 
-            //edit beer crud 
+            // crud 
+            // crud - beers
             CreateMap<Beer, BeerAdminVM>()
                 .ForMember(dest => dest.BrouwerNaam, opts => opts.MapFrom(src => src.BrouwernrNavigation.Naam))
                 .ForMember(dest => dest.SoortNaam, opts => opts.MapFrom(src => src.SoortnrNavigation.Soortnaam));
+
+            // create
+            CreateMap<BeerCreateVM, Beer>();
+            CreateMap<Beer, BeerCreateVM>();
+
         }
     }
 }

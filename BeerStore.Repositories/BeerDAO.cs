@@ -1,4 +1,5 @@
 ﻿using BeerStore.Models.Data;
+using BeerStore.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -67,5 +68,22 @@ namespace BeerStore.Repositories
                 return null;
             }
         }
+
+        public async Task Insert(Beer entity)
+        {
+            // auto generate sql statement 
+            _dbContext.Entry(entity).State = EntityState.Added;
+            
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
     }
 }
